@@ -1,0 +1,42 @@
+# EGU-Fusion++ Configuration for OncoSense
+
+# Entropy-Guided Uncertainty Fusion
+egu_fusion:
+  # Alpha parameter for uncertainty weighting
+  # Higher alpha = more aggressive downweighting of uncertain models
+  alpha: 1.0
+  
+  # Uncertainty metric to use: "entropy" or "variance"
+  uncertainty_metric: "entropy"
+  
+  # Temperature for softmax fusion weights
+  fusion_temperature: 1.0
+
+# Abstention thresholds
+abstention:
+  # Abstain if max probability below this threshold
+  max_prob_threshold: 0.6
+  
+  # Abstain if entropy above this threshold
+  entropy_threshold: 1.2
+  
+  # Abstain if all models disagree (max disagreement)
+  disagreement_threshold: 0.8
+  
+  # Use both conditions (AND) or either (OR)
+  mode: "or"  # Abstain if either condition met
+
+# Calibration settings
+calibration:
+  method: "temperature_scaling"
+  optimize_metric: "nll"
+  temperature_init: 1.5
+  temperature_bounds: [0.1, 10.0]
+
+# Risk-coverage evaluation
+risk_coverage:
+  # Coverage thresholds to evaluate
+  coverage_points: [0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 1.0]
+  
+  # Risk metric: "error_rate" or "brier"
+  risk_metric: "error_rate"

@@ -1,0 +1,73 @@
+# Data Configuration for OncoSense
+
+dataset:
+  name: "brain_tumor_mri_4class"
+  kaggle_id: "mohamadabouali1/mri-brain-tumor-dataset-4-class-7023-images"
+  num_classes: 4
+  class_names:
+    0: "glioma"
+    1: "meningioma"
+    2: "pituitary"
+    3: "no_tumor"
+
+paths:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  manifest_dir: "data/manifests"
+  manifest_file: "data/manifests/manifest.parquet"
+
+deduplication:
+  phash_threshold: 8  # Hamming distance for near-duplicates
+  cluster_method: "agglomerative"
+  cluster_distance_threshold: 10
+
+splits:
+  train_ratio: 0.70
+  val_ratio: 0.10
+  test_ratio: 0.20
+  random_seed: 42
+  stratify_by_class: true
+  split_by_cluster: true  # Prevent data leakage
+
+preprocessing:
+  input_size: 224
+  normalize_mean: [0.485, 0.456, 0.406]
+  normalize_std: [0.229, 0.224, 0.225]
+  grayscale_to_rgb: true
+
+augmentation:
+  train:
+    horizontal_flip: 0.5
+    vertical_flip: 0.0
+    rotation_limit: 15
+    brightness_limit: 0.2
+    contrast_limit: 0.2
+    gaussian_noise_var: [0.01, 0.05]
+  val_test:
+    # No augmentation for validation/test
+    pass: true
+
+corruptions:
+  # LoRRA corruption suite for robustness evaluation
+  enabled: true
+  types:
+    - name: "gaussian_blur"
+      severities: [1, 2, 3, 4, 5]
+    - name: "gaussian_noise"
+      severities: [1, 2, 3, 4, 5]
+    - name: "shot_noise"
+      severities: [1, 2, 3, 4, 5]
+    - name: "impulse_noise"
+      severities: [1, 2, 3, 4, 5]
+    - name: "speckle_noise"
+      severities: [1, 2, 3, 4, 5]
+    - name: "jpeg_compression"
+      severities: [1, 2, 3, 4, 5]
+    - name: "brightness"
+      severities: [1, 2, 3, 4, 5]
+    - name: "contrast"
+      severities: [1, 2, 3, 4, 5]
+    - name: "bias_field"
+      severities: [1, 2, 3, 4, 5]
+    - name: "downsample"
+      severities: [1, 2, 3, 4, 5]

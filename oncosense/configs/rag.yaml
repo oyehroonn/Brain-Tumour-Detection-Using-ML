@@ -1,0 +1,84 @@
+# RAG + LLM Configuration for OncoSense
+
+# Knowledge Base settings
+knowledge_base:
+  chunks_file: "knowledge_base/chunks.json"
+  index_file: "knowledge_base/faiss_index.bin"
+  min_chunks: 20
+  max_chunks: 100
+
+# Embedding model
+embedding:
+  model_name: "sentence-transformers/all-MiniLM-L6-v2"
+  embedding_dim: 384
+  batch_size: 32
+  normalize: true
+
+# FAISS retrieval
+retrieval:
+  index_type: "IndexFlatIP"  # Inner product (cosine with normalized vectors)
+  top_k: 5
+  similarity_threshold: 0.5  # Minimum similarity for relevant chunk
+
+# Evidence coverage metric
+coverage:
+  required_fields:
+    - "predicted_class_description"
+    - "typical_imaging_features"
+    - "general_next_steps_suggestion"
+    - "uncertainty_note"
+  
+  # Minimum coverage to allow LLM generation
+  min_coverage: 0.75  # 3 out of 4 fields covered
+
+# Saliency stability gating
+saliency_stability:
+  num_perturbations: 5
+  perturbation_types:
+    - type: "brightness"
+      range: [-0.1, 0.1]
+    - type: "gaussian_noise"
+      std: 0.02
+    - type: "crop_jitter"
+      pixels: 5
+  similarity_metric: "ssim"
+  min_stability_score: 0.7
+
+# LLM settings
+llm:
+  provider: "openai"  # or "local"
+  model: "gpt-4o-mini"
+  temperature: 0.3
+  max_tokens: 1024
+  
+  # System prompt for structured output
+  system_prompt: |
+    You are a medical imaging analysis assistant generating structured research reports.
+    You must ONLY output valid JSON matching the required schema.
+    Every claim must be supported by evidence from the retrieved documents.
+    Include evidence_id citations for every factual statement.
+    If evidence is insufficient, state "insufficient evidence" for that field.
+    Never make diagnostic claims or treatment recommendations.
+
+# Gating conditions (ALL must be satisfied for LLM generation)
+gating:
+  require_not_abstained: true
+  min_coverage: 0.75
+  min_saliency_stability: 0.7
+  
+  # Safe template when gating fails
+  safe_template:
+    summary: "Analysis could not be completed with sufficient confidence."
+    model_findings:
+      note: "Prediction confidence or evidence coverage below threshold."
+    limitations: "This case requires manual review due to insufficient model confidence or evidence coverage."
+
+# Output schema validation
+output_schema:
+  required_fields:
+    - "summary"
+    - "model_findings"
+    - "localization"
+    - "evidence_used"
+    - "next_steps"
+    - "limitations"

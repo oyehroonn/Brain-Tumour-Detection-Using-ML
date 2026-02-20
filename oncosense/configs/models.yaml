@@ -1,0 +1,51 @@
+# Model Configuration for OncoSense
+
+backbones:
+  densenet121:
+    name: "densenet121"
+    pretrained: true
+    dropout_rate: 0.3
+    num_classes: 4
+    checkpoint_path: "checkpoints/densenet121_best.pt"
+    temperature: 1.0  # Updated after calibration
+    
+  xception:
+    name: "xception"
+    pretrained: true
+    dropout_rate: 0.3
+    num_classes: 4
+    checkpoint_path: "checkpoints/xception_best.pt"
+    temperature: 1.0  # Updated after calibration
+    
+  efficientnet_b0:
+    name: "efficientnet_b0"
+    pretrained: true
+    dropout_rate: 0.3
+    num_classes: 4
+    checkpoint_path: "checkpoints/efficientnet_b0_best.pt"
+    temperature: 1.0  # Updated after calibration
+
+# Models to use in ensemble
+active_models:
+  - "densenet121"
+  - "xception"
+  - "efficientnet_b0"
+
+# Input specifications
+input:
+  size: 224
+  channels: 3
+  normalize_mean: [0.485, 0.456, 0.406]
+  normalize_std: [0.229, 0.224, 0.225]
+
+# MC-Dropout settings
+mc_dropout:
+  enabled: true
+  num_passes: 20
+  dropout_rate: 0.3
+
+# Grad-CAM target layers
+gradcam_layers:
+  densenet121: "features.denseblock4.denselayer16.conv2"
+  xception: "block14.rep.2"
+  efficientnet_b0: "conv_head"
