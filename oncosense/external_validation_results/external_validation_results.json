@@ -1,0 +1,74 @@
+{
+  "dataset": {
+    "name": "Figshare (Jun Cheng)",
+    "total_samples": 3064,
+    "class_distribution": {
+      "glioma": 1426,
+      "meningioma": 708,
+      "pituitary": 930
+    }
+  },
+  "overall_metrics": {
+    "accuracy": 0.9141644908616188,
+    "macro_f1": 0.9126613257941211,
+    "macro_precision": 0.9060064138841728,
+    "macro_recall": 0.9353426940621179,
+    "weighted_f1": 0.9157242331521442
+  },
+  "per_class_metrics": {
+    "Glioma": {
+      "accuracy": 0.8302945301542777,
+      "precision": 1.0,
+      "recall": 0.8302945301542777,
+      "f1_score": 0.90727969348659,
+      "auc": 0.9989279849027395,
+      "avg_confidence": 0.8034769479096521,
+      "samples": 1426
+    },
+    "Meningioma": {
+      "accuracy": 0.9929378531073446,
+      "precision": 0.7559139784946236,
+      "recall": 0.9929378531073446,
+      "f1_score": 0.8583638583638583,
+      "auc": 0.9959899235513605,
+      "avg_confidence": 0.9512540573033236,
+      "samples": 708
+    },
+    "Pituitary": {
+      "accuracy": 0.9827956989247312,
+      "precision": 0.9621052631578947,
+      "recall": 0.9827956989247312,
+      "f1_score": 0.9723404255319149,
+      "auc": 0.9990345758885831,
+      "avg_confidence": 0.9455481584354114,
+      "samples": 930
+    }
+  },
+  "confidence_analysis": {
+    "avg_confidence_correct": 0.9030412062816389,
+    "avg_confidence_wrong": 0.643297980380149,
+    "overall_avg_confidence": 0.8807460142411389
+  },
+  "generalization": {
+    "original_accuracy": 0.9650655021834061,
+    "external_accuracy": 0.9141644908616188,
+    "gap": 0.05090101132178737
+  },
+  "confusion_matrix": [
+    [
+      1184,
+      211,
+      31
+    ],
+    [
+      0,
+      703,
+      5
+    ],
+    [
+      0,
+      16,
+      914
+    ]
+  ]
+}

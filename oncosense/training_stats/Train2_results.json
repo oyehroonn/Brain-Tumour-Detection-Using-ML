@@ -1,0 +1,62 @@
+{
+  "train2": {
+    "name": "Train2 (Fixed Data)",
+    "status": "VALID",
+    "timestamp": "2026-02-23T16:37:16.889520",
+    "best_epoch": 3,
+    "best_val_accuracy": 96.51,
+    "best_val_f1": 0.9649,
+    "contamination_rate": 0.0,
+    "data_samples": {
+      "train": 4818,
+      "val": 687,
+      "test": 1281
+    },
+    "history": {
+      "epochs": [
+        1,
+        2,
+        3
+      ],
+      "train_loss": [
+        0.2203,
+        0.12,
+        0.0561
+      ],
+      "train_acc": [
+        81.67,
+        88.0,
+        94.56
+      ],
+      "train_f1": [
+        0.8154,
+        0.88,
+        0.945
+      ],
+      "val_loss": [
+        0.0632,
+        0.055,
+        0.0475
+      ],
+      "val_acc": [
+        94.61,
+        95.5,
+        96.51
+      ],
+      "val_f1": [
+        0.9468,
+        0.955,
+        0.9649
+      ]
+    }
+  },
+  "comparison": {
+    "train1_accuracy": 98.08,
+    "train1_status": "INVALID",
+    "train1_contamination": 69.6,
+    "train2_accuracy": 96.51,
+    "train2_status": "VALID",
+    "train2_contamination": 0.0,
+    "accuracy_difference": 1.5699999999999932
+  }
+}

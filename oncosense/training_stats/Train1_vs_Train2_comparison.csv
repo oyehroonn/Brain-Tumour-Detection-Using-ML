@@ -1,0 +1,5 @@
+metric,train1_leaky,train2_fixed,difference,improvement
+best_val_accuracy,98.08,96.51,1.5699999999999932,N/A (both high)
+best_val_f1,0.9802,0.9649,0.01529999999999998,N/A
+contamination_rate,69.6,0.0,69.6,FIXED (69.6% -> 0%)
+status,INVALID,VALID,-,IMPROVED
