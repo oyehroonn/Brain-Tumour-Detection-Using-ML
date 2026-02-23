@@ -3,9 +3,9 @@
 training:
   batch_size: 32
   epochs: 50
-  num_workers: 4
-  pin_memory: true
-  mixed_precision: true
+  num_workers: 0
+  pin_memory: false
+  mixed_precision: false
   gradient_clip_val: 1.0
 
 optimizer:

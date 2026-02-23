@@ -13,7 +13,7 @@ from datetime import datetime
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.cuda.amp import GradScaler, autocast
+from torch.amp import GradScaler, autocast
 from torch.optim import AdamW
 from torch.optim.lr_scheduler import CosineAnnealingLR, OneCycleLR
 import numpy as np
@@ -107,10 +107,11 @@ def train_epoch(
     dataloader: torch.utils.data.DataLoader,
     optimizer: torch.optim.Optimizer,
     criterion: nn.Module,
-    scaler: GradScaler,
+    scaler: Optional[GradScaler],
     device: str,
     scheduler: Optional[Any] = None,
-    gradient_clip: float = 1.0
+    gradient_clip: float = 1.0,
+    use_amp: bool = False
 ) -> Dict[str, float]:
     """Train for one epoch."""
     model.train()
@@ -129,18 +130,21 @@ def train_epoch(
         
         optimizer.zero_grad()
         
-        with autocast():
+        if use_amp and device == "cuda":
+            with autocast(device_type="cuda"):
+                outputs = model(images)
+                loss = criterion(outputs, labels)
+            scaler.scale(loss).backward()
+            scaler.unscale_(optimizer)
+            torch.nn.utils.clip_grad_norm_(model.parameters(), gradient_clip)
+            scaler.step(optimizer)
+            scaler.update()
+        else:
             outputs = model(images)
             loss = criterion(outputs, labels)
-        
-        scaler.scale(loss).backward()
-        
-        # Gradient clipping
-        scaler.unscale_(optimizer)
-        torch.nn.utils.clip_grad_norm_(model.parameters(), gradient_clip)
-        
-        scaler.step(optimizer)
-        scaler.update()
+            loss.backward()
+            torch.nn.utils.clip_grad_norm_(model.parameters(), gradient_clip)
+            optimizer.step()
         
         if scheduler is not None:
             scheduler.step()
@@ -313,8 +317,9 @@ def train_model(
         )
         step_scheduler_per_batch = True
     
-    # Mixed precision
-    scaler = GradScaler(enabled=train_config["training"]["mixed_precision"])
+    # Mixed precision (only enabled for CUDA)
+    use_mixed_precision = train_config["training"]["mixed_precision"] and device == "cuda"
+    scaler = GradScaler("cuda", enabled=use_mixed_precision) if device == "cuda" else None
     
     # Early stopping
     early_stopping = EarlyStopping(
@@ -336,6 +341,8 @@ def train_model(
     best_f1 = 0.0
     best_epoch = 0
     
+    use_amp = train_config["training"]["mixed_precision"] and device == "cuda"
+    
     for epoch in range(train_config["training"]["epochs"]):
         print(f"\nEpoch {epoch + 1}/{train_config['training']['epochs']}")
         
@@ -343,7 +350,8 @@ def train_model(
         train_metrics = train_epoch(
             model, train_loader, optimizer, criterion, scaler, device,
             scheduler if step_scheduler_per_batch else None,
-            train_config["training"]["gradient_clip_val"]
+            train_config["training"]["gradient_clip_val"],
+            use_amp=use_amp
         )
         
         # Validate

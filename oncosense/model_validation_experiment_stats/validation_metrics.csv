@@ -1,0 +1,9 @@
+experiment,metric,value,threshold,status
+split_analysis,test_to_train_contamination_rate,69.62,5.0,CRITICAL
+split_analysis,original_test_in_our_train,816,0,CRITICAL
+split_analysis,train_to_test_contamination_rate,20.35,50.0,WARNING
+leakage_check,test_train_leak_rate,2.0,5.0,NOTICE
+leakage_check,val_train_leak_rate,1.44,5.0,PASS
+leakage_check,same_label_leak_rate,100.0,50.0,NOTICE
+training,final_val_accuracy,98.08,95.0,INVALID
+training,final_val_f1,0.9802,0.95,INVALID

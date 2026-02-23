@@ -1,0 +1,6 @@
+class,original_test_total,leaked_to_train,contamination_rate_pct
+glioma,299,210,70.23
+meningioma,246,169,68.7
+pituitary,298,205,68.79
+no_tumor,329,232,70.52
+TOTAL,1172,816,69.62

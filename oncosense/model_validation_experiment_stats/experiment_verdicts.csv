@@ -1,0 +1,8 @@
+experiment_id,experiment_name,status,severity,key_finding,executed
+7,Split Analysis,CRITICAL,critical,69.6% test-to-train contamination,True
+6,Leakage Check,NOTICE,notice,2.0% near-duplicate leakage,True
+5,Grad-CAM Analysis,ERROR,error,Module not found (skimage),True
+4,Proper Clustering,PENDING,pending,Not executed,False
+3,External Validation,PENDING,pending,Not executed,False
+2,Center Crop Test,PENDING,pending,Not executed,False
+1,Random Label Test,PENDING,pending,Not executed,False

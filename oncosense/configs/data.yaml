@@ -37,12 +37,14 @@ preprocessing:
 
 augmentation:
   train:
-    horizontal_flip: 0.5
+    # NOTE: Horizontal flip disabled for brain MRI - laterality is diagnostically important
+    # Left/right hemisphere differences matter for tumor localization
+    horizontal_flip: 0.0
     vertical_flip: 0.0
-    rotation_limit: 15
-    brightness_limit: 0.2
-    contrast_limit: 0.2
-    gaussian_noise_var: [0.01, 0.05]
+    rotation_limit: 10  # Reduced to preserve anatomical orientation
+    brightness_limit: 0.15
+    contrast_limit: 0.15
+    gaussian_noise_var: [0.005, 0.02]  # Reduced noise for medical imaging
   val_test:
     # No augmentation for validation/test
     pass: true

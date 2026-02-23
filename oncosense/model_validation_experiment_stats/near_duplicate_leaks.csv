@@ -1,0 +1,7 @@
+leak_type,source_file,target_file,hamming_distance,same_label
+test_to_train,raw/no_tumor/BT-MRI NO Train (71).jpg,raw/no_tumor/BT-MRI NO Test (1).jpg,10,True
+test_to_train,raw/no_tumor/BT-MRI NO Train (1429).jpg,raw/no_tumor/BT-MRI NO Train (626).jpg,10,True
+test_to_train,raw/no_tumor/BT-MRI NO Train (864).jpg,raw/no_tumor/BT-MRI NO Test (386).jpg,10,True
+test_to_train,raw/no_tumor/BT-MRI NO Train (1495).jpg,raw/no_tumor/BT-MRI NO Train (827).jpg,10,True
+test_to_train,raw/no_tumor/BT-MRI NO Train (451).jpg,raw/no_tumor/BT-MRI NO Train (827).jpg,8,True
+test_to_train,raw/no_tumor/BT-MRI NO Train (616).jpg,raw/no_tumor/BT-MRI NO Train (827).jpg,10,True

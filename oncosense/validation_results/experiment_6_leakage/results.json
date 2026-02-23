@@ -1,0 +1,120 @@
+{
+  "test_train_leaks": [
+    {
+      "test_filepath": "raw/no_tumor/BT-MRI NO Train (71).jpg",
+      "test_label": "no_tumor",
+      "train_filepath": "raw/no_tumor/BT-MRI NO Test (1).jpg",
+      "train_label": "no_tumor",
+      "hamming_distance": 10,
+      "same_label": true
+    },
+    {
+      "test_filepath": "raw/no_tumor/BT-MRI NO Train (1429).jpg",
+      "test_label": "no_tumor",
+      "train_filepath": "raw/no_tumor/BT-MRI NO Train (626).jpg",
+      "train_label": "no_tumor",
+      "hamming_distance": 10,
+      "same_label": true
+    },
+    {
+      "test_filepath": "raw/no_tumor/BT-MRI NO Train (864).jpg",
+      "test_label": "no_tumor",
+      "train_filepath": "raw/no_tumor/BT-MRI NO Test (386).jpg",
+      "train_label": "no_tumor",
+      "hamming_distance": 10,
+      "same_label": true
+    },
+    {
+      "test_filepath": "raw/no_tumor/BT-MRI NO Train (1495).jpg",
+      "test_label": "no_tumor",
+      "train_filepath": "raw/no_tumor/BT-MRI NO Train (827).jpg",
+      "train_label": "no_tumor",
+      "hamming_distance": 10,
+      "same_label": true
+    },
+    {
+      "test_filepath": "raw/no_tumor/BT-MRI NO Train (451).jpg",
+      "test_label": "no_tumor",
+      "train_filepath": "raw/no_tumor/BT-MRI NO Train (827).jpg",
+      "train_label": "no_tumor",
+      "hamming_distance": 8,
+      "same_label": true
+    },
+    {
+      "test_filepath": "raw/no_tumor/BT-MRI NO Train (616).jpg",
+      "test_label": "no_tumor",
+      "train_filepath": "raw/no_tumor/BT-MRI NO Train (827).jpg",
+      "train_label": "no_tumor",
+      "hamming_distance": 10,
+      "same_label": true
+    }
+  ],
+  "test_val_leaks": [],
+  "val_train_leaks": [
+    {
+      "val_filepath": "raw/no_tumor/BT-MRI NO Train (1244).jpg",
+      "train_filepath": "raw/no_tumor/BT-MRI NO Train (787).jpg",
+      "hamming_distance": 10
+    },
+    {
+      "val_filepath": "raw/no_tumor/BT-MRI NO Train (949).jpg",
+      "train_filepath": "raw/no_tumor/BT-MRI NO Train (438).jpg",
+      "hamming_distance": 10
+    },
+    {
+      "val_filepath": "raw/no_tumor/BT-MRI NO Train (764).jpg",
+      "train_filepath": "raw/no_tumor/BT-MRI NO Train (534).jpg",
+      "hamming_distance": 10
+    },
+    {
+      "val_filepath": "raw/no_tumor/BT-MRI NO Test (288).jpg",
+      "train_filepath": "raw/no_tumor/BT-MRI NO Train (787).jpg",
+      "hamming_distance": 10
+    },
+    {
+      "val_filepath": "raw/no_tumor/BT-MRI NO Test (339).jpg",
+      "train_filepath": "raw/no_tumor/BT-MRI NO Train (943).jpg",
+      "hamming_distance": 10
+    },
+    {
+      "val_filepath": "raw/no_tumor/BT-MRI NO Train (487).jpg",
+      "train_filepath": "raw/no_tumor/BT-MRI NO Train (787).jpg",
+      "hamming_distance": 10
+    },
+    {
+      "val_filepath": "raw/no_tumor/BT-MRI NO Test (248).jpg",
+      "train_filepath": "raw/no_tumor/BT-MRI NO Test (389).jpg",
+      "hamming_distance": 10
+    },
+    {
+      "val_filepath": "raw/no_tumor/BT-MRI NO Train (730).jpg",
+      "train_filepath": "raw/no_tumor/BT-MRI NO Train (1462).jpg",
+      "hamming_distance": 10
+    },
+    {
+      "val_filepath": "raw/no_tumor/BT-MRI NO Test (127).jpg",
+      "train_filepath": "raw/no_tumor/BT-MRI NO Train (943).jpg",
+      "hamming_distance": 10
+    }
+  ],
+  "stats": {
+    "threshold_used": 10,
+    "test_images_analyzed": 300,
+    "val_images_analyzed": 626,
+    "train_images": 4612,
+    "test_train_leak_count": 6,
+    "test_train_leak_rate": 2.0,
+    "test_val_leak_count": 0,
+    "test_val_leak_rate": 0.0,
+    "val_train_leak_count": 9,
+    "val_train_leak_rate": 1.4376996805111821,
+    "same_label_leaks": 6,
+    "different_label_leaks": 0
+  },
+  "timestamp": "2026-02-23T06:55:16.421449",
+  "verdict": {
+    "summary": "NOTICE: Minor near-duplicate leakage detected",
+    "severity": "notice",
+    "explanation": "2.0% near-duplicate leakage detected. This may slightly affect accuracy."
+  }
+}

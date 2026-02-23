@@ -1,0 +1,64 @@
+{
+  "timestamp": "2026-02-23T06:47:49.637080",
+  "total_images": 6597,
+  "original_split_counts": {
+    "original_train": 5425,
+    "original_test": 1172
+  },
+  "our_split_counts": {
+    "train": 4612,
+    "test": 1359,
+    "val": 626
+  },
+  "cross_tabulation": {
+    "test": {
+      "original_test": 255,
+      "original_train": 1104
+    },
+    "train": {
+      "original_test": 816,
+      "original_train": 3796
+    },
+    "val": {
+      "original_test": 101,
+      "original_train": 525
+    }
+  },
+  "contamination_analysis": {
+    "original_test_in_our_train": 816,
+    "original_test_total": 1172,
+    "test_to_train_contamination_rate": 69.6245733788396,
+    "original_train_in_our_test": 1104,
+    "original_train_total": 5425,
+    "train_to_test_contamination_rate": 20.350230414746544
+  },
+  "verdict": {
+    "summary": "CRITICAL: Severe train/test contamination detected!",
+    "severity": "critical",
+    "explanation": "Over 70% of original test images ended up in our training set. This is a major source of data leakage and likely explains the artificially high accuracy.",
+    "test_to_train_rate": 69.6245733788396,
+    "train_to_test_rate": 20.350230414746544
+  },
+  "per_class_contamination": {
+    "glioma": {
+      "original_test_in_our_train": 210,
+      "original_test_total": 299,
+      "contamination_rate": 70.23411371237458
+    },
+    "meningioma": {
+      "original_test_in_our_train": 169,
+      "original_test_total": 246,
+      "contamination_rate": 68.69918699186992
+    },
+    "pituitary": {
+      "original_test_in_our_train": 205,
+      "original_test_total": 298,
+      "contamination_rate": 68.79194630872483
+    },
+    "no_tumor": {
+      "original_test_in_our_train": 232,
+      "original_test_total": 329,
+      "contamination_rate": 70.51671732522796
+    }
+  }
+}

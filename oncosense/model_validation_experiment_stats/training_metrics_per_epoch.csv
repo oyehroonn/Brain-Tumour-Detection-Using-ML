@@ -1,0 +1,7 @@
+epoch,train_loss,train_acc,train_f1,val_loss,val_acc,val_f1,validity
+1,0.2449,80.1,0.797,0.0928,92.01,0.9178,INVALID (contaminated)
+2,0.095,91.47,0.913,0.0749,94.25,0.9424,INVALID (contaminated)
+3,0.0752,93.38,0.9325,0.0487,95.53,0.9539,INVALID (contaminated)
+4,0.0513,95.42,0.9533,0.0472,96.17,0.9611,INVALID (contaminated)
+5,0.0512,95.46,0.9536,0.0572,96.33,0.9622,INVALID (contaminated)
+6,0.0384,96.2,0.9613,0.0429,98.08,0.9802,INVALID (contaminated)
