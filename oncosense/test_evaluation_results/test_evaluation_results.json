@@ -1,0 +1,98 @@
+{
+  "overall": {
+    "accuracy": 0.9586260733801717,
+    "macro_f1": 0.9568857283061161,
+    "weighted_f1": 0.9590176803037772,
+    "macro_precision": 0.9606009486509566,
+    "macro_recall": 0.95646386425291,
+    "total_samples": 1281,
+    "correct_predictions": 1228,
+    "incorrect_predictions": 53
+  },
+  "per_class": {
+    "Glioma": {
+      "accuracy": 0.8896321070234113,
+      "precision": 0.9925373134328358,
+      "recall": 0.8896321070234113,
+      "f1_score": 0.9382716049382716,
+      "support": 299,
+      "correct": 266,
+      "avg_confidence": 0.7835413217544556
+    },
+    "Meningioma": {
+      "accuracy": 0.9833887043189369,
+      "precision": 0.8680351906158358,
+      "recall": 0.9833887043189369,
+      "f1_score": 0.9221183800623053,
+      "support": 301,
+      "correct": 296,
+      "avg_confidence": 0.9184732437133789
+    },
+    "Pituitary": {
+      "accuracy": 0.9633333333333334,
+      "precision": 0.9897260273972602,
+      "recall": 0.9633333333333334,
+      "f1_score": 0.9763513513513513,
+      "support": 300,
+      "correct": 289,
+      "avg_confidence": 0.9152259230613708
+    },
+    "No Tumor": {
+      "accuracy": 0.989501312335958,
+      "precision": 0.9921052631578947,
+      "recall": 0.989501312335958,
+      "f1_score": 0.9908015768725361,
+      "support": 381,
+      "correct": 377,
+      "avg_confidence": 0.9427160024642944
+    }
+  },
+  "confusion_matrix": [
+    [
+      266,
+      32,
+      1,
+      0
+    ],
+    [
+      0,
+      296,
+      2,
+      3
+    ],
+    [
+      1,
+      10,
+      289,
+      0
+    ],
+    [
+      1,
+      3,
+      0,
+      377
+    ]
+  ],
+  "roc_auc": {
+    "Glioma": 0.9986819609152028,
+    "Meningioma": 0.994786087192352,
+    "Pituitary": 0.999571865443425,
+    "No Tumor": 0.9995333916593759,
+    "macro_avg": 0.998143326302589
+  },
+  "confidence": {
+    "avg_confidence_correct": 0.9202487468719482,
+    "avg_confidence_incorrect": 0.668204128742218,
+    "overall_avg_confidence": 0.909820556640625,
+    "confidence_gap": 0.2520446181297302
+  },
+  "metadata": {
+    "timestamp": "2026-02-24T00:27:31.501113",
+    "checkpoint": "checkpoints/densenet121_fixed.pt",
+    "manifest": "data/manifests/manifest_fixed.parquet",
+    "device": "cpu",
+    "model": "DenseNet-121",
+    "num_classes": 4,
+    "test_samples": 1281
+  }
+}
